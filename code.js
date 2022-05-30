@@ -17,99 +17,116 @@ const minusButton = document.querySelector('#minusB');
 const enterButton = document.querySelector('#enterB');
 const clearButton = document.querySelector('#clearB');
 
+let equation =[];
+
 oneButton.addEventListener('click', function() {
     const screen = document.querySelector('.screen');
     screen.innerHTML += '1';
+    equation.push(1);
 });
 
 twoButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '2';
+    equation.push(2);
 });
 
 threeButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '3';
+    equation.push(3);
 });
 
 fourButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '4';
+    equation.push(4);
 });
 
 fiveButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '5';
+    equation.push(5);
 });
 
 sixButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '6';
+    equation.push(6);
 });
 
 sevenButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '7';
+    equation.push(7);
 });
 
 eightButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '8';
+    equation.push(8);
 });
 
 nineButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '9';
+    equation.push(9);
 });
 
 zeroButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '0';
+    equation.push(0);
 });
 
 decimalButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '.';
     decimalButton.disabled = true;
+    equation.push('.');
 });
 
 negativeButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
     screen.innerHTML += '-';
     negativeButton.disabled = true;
+    equation.push('-');
 });
 
 divideButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
-    screen.innerHTML += '/';
+    screen.innerHTML += ' / ';
     decimalButton.disabled = false;
     negativeButton.disabled = false;
+    equation.push('/');
 });
 
 multiplyButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
-    screen.innerHTML += '*';
+    screen.innerHTML += ' * ';
     decimalButton.disabled = false;
     negativeButton.disabled = false;
+    equation.push('*');
 });
 
 addButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
-    screen.innerHTML += '+';
+    screen.innerHTML += ' + ';
     decimalButton.disabled = false;
     negativeButton.disabled = false;
+    equation.push('+');
 });
 
 minusButton.addEventListener('click', function(){
     const screen = document.querySelector('.screen');
-    screen.innerHTML += '-';
+    screen.innerHTML += ' - ';
     decimalButton.disabled = false;
     negativeButton.disabled = false;
+    equation.push('-');
 });
 
 enterButton.addEventListener('click', function(){ //for later
-    const screen = document.querySelector('.screen');
-    screen.innerHTML += '2';
+    console.log(equation);
 });
 
 clearButton.addEventListener('click', function(){
@@ -117,5 +134,6 @@ clearButton.addEventListener('click', function(){
     screen.innerHTML = '';
     decimalButton.disabled = false;
     negativeButton.disabled = false;
+    equation = [];
 });
 
