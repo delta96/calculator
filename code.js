@@ -18,6 +18,7 @@ const enterButton = document.querySelector('#enterB');
 const clearButton = document.querySelector('#clearB');
 
 let equation =[];
+let operandSelection = 0;
 
 oneButton.addEventListener('click', function() {
     const screen = document.querySelector('.screen');
@@ -99,6 +100,7 @@ divideButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('/');
+    operandSelection = 1;
 });
 
 multiplyButton.addEventListener('click', function(){
@@ -107,6 +109,7 @@ multiplyButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('*');
+    operandSelection = 2;
 });
 
 addButton.addEventListener('click', function(){
@@ -115,6 +118,7 @@ addButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('+');
+    operandSelection = 3;
 });
 
 minusButton.addEventListener('click', function(){
@@ -123,15 +127,7 @@ minusButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('-');
-});
-
-enterButton.addEventListener('click', function(){ //for later
-    console.log(equation);
-    let answer = equationSplit(equation);
-    const screen = document.querySelector('.screen');
-    screen.innerHTML = '';
-    screen.innerHTML = answer;
-
+    operandSelection = 4;
 });
 
 clearButton.addEventListener('click', function(){
@@ -140,6 +136,14 @@ clearButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation = [];
+});
+
+enterButton.addEventListener('click', function(){ //for later
+    let answer = equationSplit(equation);
+    const screen = document.querySelector('.screen');
+    screen.innerHTML = '';
+    screen.innerHTML = answer;
+
 });
 
 function opFind(arRay){  // finds the index of operand 
@@ -162,10 +166,31 @@ function opFind(arRay){  // finds the index of operand
 function equationSplit(array0){
     let opIndex = opFind(array0);
     let array1 = array0.splice(0,opIndex);
-    let array2 = array0.splice(opIndex - 1);
-    let firstNum = parseInt(array1.join(''));
-    let secondNum = parseInt(array2.join(''));
-    let solution = firstNum / secondNum;
-    return solution;
+    let array2 = array0.splice(-1, opIndex);
+    let num1 = parseInt(array1.join(''));
+    let num2 = parseInt(array2.join(''));
+   
+    if(operandSelection === 1){
+        let solution = num1 / num2;
+        console.log(num1);
+        console.log(num2);
+        return solution;
+    } else if(operandSelection === 2){
+        let solution = num1 * num2;
+        console.log(num1);
+        console.log(num2);
+        return solution;
+    } else if(operandSelection === 3){
+        let solution = num1 + num2;
+        console.log(num1);
+        console.log(num2);
+        return solution;
+    } else if(operandSelection === 4){
+        let solution = num1 - num2;
+        console.log(num1);
+        console.log(num2);
+        return solution;
+        
+    } 
     
 }
