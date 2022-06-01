@@ -127,6 +127,11 @@ minusButton.addEventListener('click', function(){
 
 enterButton.addEventListener('click', function(){ //for later
     console.log(equation);
+    let answer = equationSplit(equation);
+    const screen = document.querySelector('.screen');
+    screen.innerHTML = '';
+    screen.innerHTML = answer;
+
 });
 
 clearButton.addEventListener('click', function(){
@@ -137,3 +142,30 @@ clearButton.addEventListener('click', function(){
     equation = [];
 });
 
+function opFind(arRay){  // finds the index of operand 
+
+    if(arRay.includes('/')){
+        let index = arRay.indexOf('/');
+        return(index);
+    } else if(arRay.includes('*')){
+        let index = arRay.indexOf('*');
+        return(index);
+    } else if(arRay.includes('+')){
+        let index = arRay.indexOf('+');
+        return(index);
+    } else if(arRay.includes('-')){
+        let index = arRay.indexOf('-');
+        return(index);
+    }
+}
+
+function equationSplit(array0){
+    let opIndex = opFind(array0);
+    let array1 = array0.splice(0,opIndex);
+    let array2 = array0.splice(opIndex - 1);
+    let firstNum = parseInt(array1.join(''));
+    let secondNum = parseInt(array2.join(''));
+    let solution = firstNum / secondNum;
+    return solution;
+    
+}
