@@ -126,7 +126,7 @@ minusButton.addEventListener('click', function(){
     screen.innerHTML += ' - ';
     decimalButton.disabled = false;
     negativeButton.disabled = false;
-    equation.push('-');
+    equation.push('_');
     operandSelection = 4;
 });
 
@@ -157,19 +157,20 @@ function opFind(arRay){  // finds the index of operand
     } else if(arRay.includes('+')){
         let index = arRay.indexOf('+');
         return(index);
-    } else if(arRay.includes('-')){
-        let index = arRay.indexOf('-');
+    } else if(arRay.includes('_')){
+        let index = arRay.indexOf('_');
         return(index);
     }
 }
 
 function equationSplit(array0){
     let opIndex = opFind(array0);
-    let array1 = array0.splice(0,opIndex);
-    let array2 = array0.splice(-1, opIndex);
-    let num1 = parseInt(array1.join(''));
-    let num2 = parseInt(array2.join(''));
-   
+    let array1 = array0.slice(0,opIndex);
+    let array2 = array0.slice((opIndex + 1));
+    console.log(array2.join(''));
+    let num1 = parseFloat(array1.join(''));
+    let num2 = parseFloat(array2.join(''));
+
     if(operandSelection === 1){
         let solution = num1 / num2;
         console.log(num1);
