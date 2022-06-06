@@ -1,4 +1,4 @@
-const oneButton = document.querySelector('#oneB');
+const oneButton = document.querySelector('#oneB'); //List of button declarations
 const twoButton = document.querySelector('#twoB');
 const threeButton = document.querySelector('#threeB');
 const fourButton = document.querySelector('#fourB');
@@ -14,10 +14,10 @@ const divideButton = document.querySelector('#divisionB');
 const multiplyButton = document.querySelector('#multiplyB');
 const addButton = document.querySelector('#additionB');
 const minusButton = document.querySelector('#minusB');
-const enterButton = document.querySelector('#enterB');
+const equalButton = document.querySelector('#enterB');
 const clearButton = document.querySelector('#clearB');
 
-let equation =[];
+let equation =[]; //Globally declare empty array to store input values
 let operandSelection = 0;
 
 oneButton.addEventListener('click', function() {
@@ -100,7 +100,7 @@ divideButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('/');
-    operandSelection = 1;
+    operandSelection = 1; // Changes to var to 1 to be used in operate function
 });
 
 multiplyButton.addEventListener('click', function(){
@@ -109,7 +109,7 @@ multiplyButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('*');
-    operandSelection = 2;
+    operandSelection = 2; // Changes to var to 2 to be used in operate function
 });
 
 addButton.addEventListener('click', function(){
@@ -118,7 +118,7 @@ addButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('+');
-    operandSelection = 3;
+    operandSelection = 3; // Changes to var to 3 to be used in operate function
 });
 
 minusButton.addEventListener('click', function(){
@@ -127,7 +127,7 @@ minusButton.addEventListener('click', function(){
     decimalButton.disabled = false;
     negativeButton.disabled = false;
     equation.push('_');
-    operandSelection = 4;
+    operandSelection = 4; // Changes to var to 4 to be used in operate function
 });
 
 clearButton.addEventListener('click', function(){
@@ -138,60 +138,42 @@ clearButton.addEventListener('click', function(){
     equation = [];
 });
 
-enterButton.addEventListener('click', function(){ //for later
-    let answer = equationSplit(equation);
+equalButton.addEventListener('click', function(){ // Calls on the operate function and displays results of equation
+    let answer = operate(equation);
     const screen = document.querySelector('.screen');
     screen.innerHTML = '';
     screen.innerHTML = answer;
-
+    equation = [answer];
 });
 
-function opFind(arRay){  // finds the index of operand 
+function operandFind(arRay){  // Finds the index of the operand in the equation array
 
     if(arRay.includes('/')){
-        let index = arRay.indexOf('/');
-        return(index);
+        return arRay.indexOf('/');  
     } else if(arRay.includes('*')){
-        let index = arRay.indexOf('*');
-        return(index);
+        return arRay.indexOf('*');    
     } else if(arRay.includes('+')){
-        let index = arRay.indexOf('+');
-        return(index);
+        return arRay.indexOf('+');    
     } else if(arRay.includes('_')){
-        let index = arRay.indexOf('_');
-        return(index);
+        return arRay.indexOf('_');
     }
 }
 
-function equationSplit(array0){
-    let opIndex = opFind(array0);
+function operate(array0){ // Takes operand index and splits the array into numbers 
+    let opIndex = operandFind(array0);
     let array1 = array0.slice(0,opIndex);
     let array2 = array0.slice((opIndex + 1));
-    console.log(array2.join(''));
     let num1 = parseFloat(array1.join(''));
     let num2 = parseFloat(array2.join(''));
 
-    if(operandSelection === 1){
-        let solution = num1 / num2;
-        console.log(num1);
-        console.log(num2);
-        return solution;
+    if(operandSelection === 1){ // Uses the operandSelection number set by button to declare operator in equation.
+        return num1 / num2;  
     } else if(operandSelection === 2){
-        let solution = num1 * num2;
-        console.log(num1);
-        console.log(num2);
-        return solution;
+        return num1 * num2; 
     } else if(operandSelection === 3){
-        let solution = num1 + num2;
-        console.log(num1);
-        console.log(num2);
-        return solution;
+        return num1 + num2;
     } else if(operandSelection === 4){
-        let solution = num1 - num2;
-        console.log(num1);
-        console.log(num2);
-        return solution;
-        
+        return num1 - num2;
     } 
     
 }
